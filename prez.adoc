@@ -2,3 +2,4 @@
 :revealjs_history:
 :revealjs_controls: false
 :idprefix: slide_
+:source-highlighter: highlightjs
