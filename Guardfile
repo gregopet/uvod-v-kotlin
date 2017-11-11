@@ -1,5 +1,4 @@
 guard 'shell' do
-  watch(/^.*\.adoc$/) {|m|
-    system "./prez"
-  }
+  watch(/^.*\.adoc$/) { system "./prez" }
+  watch(/^.*kt/) { system "./prez"}
 end
