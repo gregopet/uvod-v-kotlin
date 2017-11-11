@@ -1,0 +1,2 @@
+bundle exec asciidoctor-revealjs prez.adoc
+echo "Created presentation at file://$(pwd)/prez.html"
