@@ -3,3 +3,9 @@
 :revealjs_controls: false
 :idprefix: slide_
 :source-highlighter: highlightjs
+:revealjs_theme: white
+:highlightjs-theme: reveal.js/lib/css/atom-one-light.css
+
+// dark theme
+//:revealjs_theme: black
+//:highlightjs-theme: reveal.js/lib/css/androidstudio.css
