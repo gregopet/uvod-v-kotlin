@@ -1,3 +1,4 @@
 = Uvod v kotlin
 :revealjs_history:
+:revealjs_controls: false
 :idprefix: slide_
