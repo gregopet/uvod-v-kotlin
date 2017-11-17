@@ -284,6 +284,7 @@ include::{sourcedir}/dataClassDestructureCopy.kt[]
 
 
 
-// Multi-line stringi
+// Multi-line stringi, triple quotes
 // Helperji: delegated properties
 // Ekosistem: kscript
+// this@woot
