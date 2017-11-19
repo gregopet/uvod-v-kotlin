@@ -1,6 +1,6 @@
 = Uvod v kotlin
 :revealjs_history:
-:revealjs_controls: false
+:revealjs_controls: true
 :idprefix: slide_
 :source-highlighter: highlightjs
 :sourcedir: kotlin/src
