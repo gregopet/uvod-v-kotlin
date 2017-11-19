@@ -1,0 +1,7 @@
+= Uvod v Kotlin
+
+This is the source behind the slides used to create the Introduction to Kotlin talk for CafeBabe in November 2017.
+You will need Ruby and Bundler to compile it (sorry!).
+You can either run `prez` to compile the presentation or `prez-watch` to have it auto-compile on changes.
+
+The whole thing will also be available at https://s3-us-west-1.amazonaws.com/publicstash/uvod-v-kotlin/prez.html
