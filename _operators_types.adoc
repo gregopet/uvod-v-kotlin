@@ -1,0 +1,159 @@
+
+== Podatkovni tipi
+
+* Standardni tipi (`Int`, `Long`, `Short`, `Float`, `Double`, `Byte`, `String`, `Char`, `Boolean`, `Array`)
+* Posebni tipi (`Any`, `Unit`, `Nothing`)
+* Nullable tipi
+* Java podpora (`CharArray`, `IntArray`, `FloatArray`..)
+
+
+== Števila
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=number_types]
+----
+
+
+
+=== Lepši zapis števil
+
+[source,kotlin]
+----
+val oneMillion = 1_000_000
+val creditCardNumber = 1234_5678_9012_3456L
+val socialSecurityNumber = 999_99_9999L
+val hexBytes = 0xFF_EC_DE_5E
+val bytes = 0b11010010_01101001_10010100_10010010
+----
+
+
+== Stringi
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=strings]
+----
+
+=== Interpolacija stringov
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=strings1]
+----
+
+
+== Posebni tipi
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=special_types]
+----
+
+[NOTE.speaker]
+--
+* Any in nothing sta nullable, Unit ne
+* Nothing lahko pomaga compilerju
+* Any definira samo toString(), equals() in hashCode(); ostalo dostopno preko extension metod
+--
+
+
+== Nullable tipi
+
+[quote,Tony Hoare]
+I call it my billion-dollar mistake. It was the invention of the null reference in 1965.
+
+
+
+== Nullable tipi
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=null1]
+----
+
+== Nullable tipi
+
+Če ne povemo drugače, Kotlin predpostavi ne-nullable
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=null2]
+----
+
+[NOTE.speaker]
+--
+Prejšnji teden je C# sprejel podobno strategijo!
+--
+
+
+== Nullable tipi
+
+Preverjanje že med kompilacijo
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=nullInterface]
+
+include::{sourcedir}/_1a_kotlin_types.kt[tag=null3]
+----
+
+== Nullable tipi
+
+Preverjanje že med kompilacijo
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=nullInterface]
+
+include::{sourcedir}/_1a_kotlin_types.kt[tag=null4]
+----
+
+== Nullable tipi
+
+Operator za varno navigacijo in "Elvis" operator
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=nullInterface]
+
+include::{sourcedir}/_1a_kotlin_types.kt[tag=null5]
+----
+
+== Nullable tipi
+
+Če smo prepričani, lahko uporabimo operator `!!`
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=nullInterface]
+
+include::{sourcedir}/_1a_kotlin_types.kt[tag=null6]
+----
+
+[NOTE.speaker]
+--
+Sedaj do konca ni več potrebno pisati !!
+--
+
+
+== Nullable tipi
+
+//Razrede, ki niso bili spisani v Kotlinu, lahko uporabljamo brez null checkinga:
+Kotlinu neznani tipi so ignorirani:
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=null7]
+----
+
+
+== Nullable tipi
+
+Interoperabilnost z ne-Kotlin kodo lahko pridobimo s pomočjo anotacij:
+
+* Validacijski (JSR-305, Android, FindBugs, Lombok, Eclipse, JetBrains..)
+* `TypeQualifierDefault`
+* Katerikoli drug annotation s pomočjo compiler flagov
+
+

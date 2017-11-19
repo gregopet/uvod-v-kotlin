@@ -1,0 +1,202 @@
+== Lahko ga pišemo podobno Javi
+
+[source,kotlin]
+----
+include::{sourcedir}/simpleClass.kt[]
+----
+
+[NOTE.speaker]
+--
+* podpičja, fun, postfix tipi, ni importov
+* ne loči med extend in implement, hkrati ne omogoča multiple inheritance-a
+* le par presenečenj (class zaprt po defaultu, null ne deluje, obvezna default vrednost, statična funkcija zunaj, default importi..)
+--
+
+=== .. s tem, da za tipe uporabimo postfix notacijo ...
+
+[source,kotlin]
+----
+var name: String = "Hello"
+
+fun toString(): String { 
+	return name;
+}
+----
+
+
+=== !
+[quote, "Eric Lippert, C# principal developer, o postfix tipih"]
+--
+If we had made different design decisions in C# 1.0, then we wouldn't be in this mess in the first place
+--
+
+
+=== .. jih kar izpustimo, kadar so očitni ...
+
+[source,kotlin]
+----
+var name = "Hello"
+----
+
+
+=== ... izpustimo tudi razliko med interface-i in parent classi ...
+
+
+[source,kotlin]
+----
+class Greeter: AbstractGreeter, Serializable { ... }
+----
+
+(multiple inheritance še vedno ni dovoljen)
+
+
+=== ... in nove instance ustvarimo brez keyworda `new`
+
+[source,kotlin]
+----
+Greeter().greet()
+----
+
+
+== Vsak class ima primarni konstruktor
+
+[source,kotlin]
+----
+include::{sourcedir}/simpleClassConstructor.kt[]
+----
+
+
+=== Kodo primarnega konstruktorja lahko damo v `init` blok ...
+
+[source,kotlin]
+----
+class Person(name: String) {
+    init { 
+        LOG.trace("Created person $name")
+    }
+}
+----
+
+=== ... lahko pa dodamo še sekundarne konstruktorje
+
+
+[source,kotlin]
+----
+class Person(name: String) {
+    init { 
+        LOG.trace("Created person $name")
+    }
+
+    // Sekundarni konstruktorji MORAJO klicati primarnega
+    constructor() : this("Anonymous") {
+    	LOG.debug("Person created anonymously")
+    }
+}
+----
+
+
+== Propertyje lahko ustvarimo s krajšo sintakso
+
+[source,kotlin]
+----
+include::{sourcedir}/simpleClassProperties.kt[]
+----
+
+=== ... iz Jave jih kličemo kot običajne getterje in setterje ...
+
+.Kotlinova lastnost ...
+[source,kotlin]
+----
+var name: String
+----
+
+[source,java,title="... ter njen Java ekvivalent"]
+----
+private String name;
+public String getName() { return this.name; }
+public void setName(String name) { this.name = name; }
+----
+
+=== ... lahko pa spišemo tudi svojo implementacijo
+
+[source,kotlin]
+----
+var uppercaseName: String
+	get() { return this.name.toUpperCase() }
+	private set(value) { this.name = value.toUpperCase() }
+----
+
+[NOTE.speaker]
+--
+* v tem primeru nam Kotlin ne bo naredil nepotrebnega backing fielda
+* propertyji naj bi se uporabljali za hitre izračune brez neočitnih side effectov!
+--
+
+
+== Propertyje lahko definiramo kar v konstruktorju
+
+[source,kotlin]
+----
+include::{sourcedir}/simpleClassConstructor.kt[]
+----
+
+[NOTE.speaker]
+--
+zdaj vidimo, zakaj mora biti en primarni konstruktor
+--
+
+
+== Data class
+
+Data classi nam dodajo default `equals/hashCode` in `toString` implementacijo:
+
+[source,kotlin]
+----
+include::{sourcedir}/dataClass.kt[]
+----
+
+[NOTE.speaker]
+--
+equals ==
+--
+
+=== Destructuring assignment
+
+[source,kotlin]
+----
+include::{sourcedir}/dataClassDestructure.kt[]
+----
+
+[NOTE.speaker]
+--
+Deluje tudi v lambdah..
+--
+
+=== Destructuring assignment
+
+Lahko ga implementiramo tudi v svojih classih:
+
+
+[source,kotlin]
+----
+include::{sourcedir}/classDestructure.kt[]
+----
+
+=== Destructuring assignment
+
+Na voljo pa imamo še Kotlinova classa `Pair` in `Triple`:
+
+[source,kotlin]
+----
+include::{sourcedir}/pair.kt[]
+----
+
+
+=== `copy()``
+
+Data classi nam dodajo še metodo `copy`:
+
+[source,kotlin]
+----
+include::{sourcedir}/dataClassDestructureCopy.kt[]
+----

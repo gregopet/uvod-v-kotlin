@@ -1,0 +1,65 @@
+== Ločnice
+
+[cols=">1,2"]
+|===
+| julij 2011 | javna predstavitev
+| februar 2016 | verzija 1.0
+| marec 2017 | verzija 1.1: JS podpora, korutine
+| maj 2017 | uradni jezik za Android development
+| november 2017 | oznanitev iOS podpore
+
+|===
+
+== !
+
+.Google Trends, 12.11.2017
+image::google_trends.png[]
+
+== Uporabniki
+
+IntelliJ, Prezi, Netflix, Amazon, Pinterest, Coursera, Uber, Square, Trello, Basecamp, Goldman-Sachs, J.P. Morgan, Flipboard...
+
+
+== Vzorniki
+
+* Java
+* C#
+* Scala
+* Ceylon
+* Gosu
+* Groovy
+
+[NOTE.speaker]
+--
+Izbor featurjev bolj ali manj iz drugih jezikov
+--
+
+
+== !
+
+[quote, Kotlinova dokumentacija]
+If in doubt, default to the Java Coding Conventions
+
+
+== Cilji
+
+* objektno usmerjen
+* jedrnat
+* varen
+* prijazen orodjem
+* hiter compiler
+* interoperabilen (JVM, JS, native LLVM compiler + posebna podpora za iOS)
+
+[NOTE.speaker]
+--
+* null safety
+* plugini za IntelliJ IDEA (avtorji Kotlina) in Eclipse
+* podpora za Ant, Maven, Gradle (Java)
+* compiler zaenkrat še ni zelo hiter
+--
+
+== Cilji
+
+* podoben Javi
+* preprost
+* optionally verbose

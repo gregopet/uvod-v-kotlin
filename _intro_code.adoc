@@ -1,0 +1,73 @@
+== !
+
+[source,kotlin]
+----
+include::{sourcedir}/_0_main.kt[]
+----
+
+
+== !
+
+[source,kotlin]
+----
+include::{sourcedir}/_0a_main.kt[]
+----
+
+
+== Enum
+
+[source,kotlin]
+----
+include::{sourcedir}/_1_kotlin_things.kt[tag=enum]
+----
+
+
+
+== Interface
+
+[source,kotlin]
+----
+include::{sourcedir}/_1_kotlin_things.kt[tag=interface]
+----
+
+
+
+== Class
+
+[source,kotlin]
+----
+include::{sourcedir}/_1_kotlin_things.kt[tag=class]
+----
+
+[NOTE.speaker]
+--
+* podpičja, fun, postfix tipi, ni importov
+* ne loči med extend in implement, hkrati ne omogoča multiple inheritance-a
+* le par presenečenj (class zaprt po defaultu, null ne deluje, obvezna default vrednost, statična funkcija zunaj, default importi..)
+--
+
+
+=== !
+
+[source,kotlin]
+----
+include::{sourcedir}/_1_kotlin_things.kt[tag=annotation]
+----
+
+
+
+== Object
+
+[source,kotlin]
+----
+include::{sourcedir}/_1_kotlin_things.kt[tag=object]
+----
+
+
+== Ostalo
+
+* Operatorji in podatkovni tipi
+* Annotations
+* Izjeme (exceptions)
+* Generics
+* ..pa nič več kaj dosti..
