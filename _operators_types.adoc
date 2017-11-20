@@ -89,6 +89,16 @@ Prejšnji teden je C# sprejel podobno strategijo!
 
 == Nullable tipi
 
+Lahko jih late-inicializiramo
+
+[source,kotlin]
+----
+include::{sourcedir}/_1a_kotlin_types.kt[tag=null_lateinit]
+----
+
+
+== Nullable tipi
+
 Preverjanje že med kompilacijo
 
 [source,kotlin]

@@ -77,6 +77,14 @@ requirement1 = null // NAPAKA!
 }
 */
 
+fun blah23() {
+//#tag::null_lateinit[]
+lateinit var zaenkratNeVem: String
+
+zaenkratNeVem = "Zdaj pa vem!"
+//#end::null_lateinit[]
+}
+
 
 //#tag::nullInterface[]
 interface SkillBuff {
