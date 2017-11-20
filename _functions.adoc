@@ -1,0 +1,102 @@
+
+
+
+== Funkcije
+
+Ni potrebno, da so del classov
+
+[source,kotlin]
+----
+package com.demo.kotlin
+import kotlin.io.println
+
+fun main(args: Array<String>) {
+    println("I'm Luna, a lvl 22 human adventurer")
+}
+----
+
+[NOTE.speaker]
+--
+* static import
+--
+
+
+== !
+[quote,John Carmack]
+Sometimes, the elegant implementation is just a function.  Not a method.  Not a class.  Not a framework.  Just a function.
+
+
+== Funkcije
+
+Standardna knjižnjica jih je polna
+
+[source,kotlin]
+----
+include::{sourcedir}/functions.kt[tag=useful1]
+----
+
+
+
+== Funkcije
+
+Lahko jih referenciramo
+
+[source,kotlin]
+----
+include::{sourcedir}/functions.kt[tag=pass_around]
+----
+
+
+
+== Funkcije
+
+Lahko jih uporabimo v parametrih
+
+[source,kotlin]
+----
+include::{sourcedir}/functions.kt[tag=parametrize]
+----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+== Funkcije
+
+Imajo več vrst dostopnosti
+
+[source,kotlin]
+----
+include::{sourcedir}/functions.kt[tag=visibility]
+----
+
+== Moduli
+
+A module is a set of Kotlin files compiled together:
+
+* an IntelliJ IDEA module;
+* a Maven project;
+* a Gradle source set;
+* a set of files compiled with one invocation of the Ant task
+
+
+
+
+
+
+
+
+
+
+
+
+// tailrec, external

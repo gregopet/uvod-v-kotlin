@@ -1,4 +1,4 @@
-== !
+== Function
 
 [source,kotlin]
 ----
@@ -6,11 +6,11 @@ include::{sourcedir}/_0_main.kt[]
 ----
 
 
-== !
+== Function
 
 [source,kotlin]
 ----
-include::{sourcedir}/_0a_main.kt[]
+include::{sourcedir}/functions.kt[tag=intro]
 ----
 
 
