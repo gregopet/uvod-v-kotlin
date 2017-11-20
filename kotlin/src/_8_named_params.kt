@@ -14,3 +14,4 @@ fun main(args: Array<String>) {
 //TODO:
 // inline fun
 // functions with receiver
+// suspendable functions (yield, coroutines.. no VM or OS support required), can only call from another suspendable
