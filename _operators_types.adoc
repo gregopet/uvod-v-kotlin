@@ -14,6 +14,12 @@
 include::{sourcedir}/_1a_kotlin_types.kt[tag=number_types]
 ----
 
+[NOTE.speaker]
+--
+* boxing
+* ni auto castanja
+--
+
 
 
 === Lepši zapis števil
@@ -54,7 +60,7 @@ include::{sourcedir}/_1a_kotlin_types.kt[tag=special_types]
 --
 * Any in nothing sta nullable, Unit ne
 * Nothing lahko pomaga compilerju
-* Any definira samo toString(), equals() in hashCode(); ostalo dostopno preko extension metod
+* Any NI subclass od Object in definira samo toString(), equals() in hashCode(); ostalo dostopno preko extension metod
 --
 
 
@@ -132,7 +138,7 @@ include::{sourcedir}/_1a_kotlin_types.kt[tag=null5]
 
 == Nullable tipi
 
-Če smo prepričani, lahko uporabimo operator `!!`
+Tvegamo lahko z operatorjem `!!`
 
 [source,kotlin]
 ----
