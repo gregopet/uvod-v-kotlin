@@ -22,6 +22,7 @@ include::_intro_code.adoc[]
 
 include::_operators_types.adoc[]
 
+include::_functions.adoc[]
 
 == Hvala!
 
@@ -32,5 +33,5 @@ Prezentacija je na voljo na https://github.com/gregopet/uvod-v-kotlin
 
 // Multi-line stringi, triple quotes
 // Helperji: delegated properties
-// Ekosistem: kscript
+// Ekosistem: kscript, funktionale
 // this@woot

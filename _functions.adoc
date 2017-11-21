@@ -50,18 +50,145 @@ include::{sourcedir}/functions.kt[tag=pass_around]
 
 == Funkcije
 
-Lahko jih uporabimo v parametrih
+Njihov podpis lahko direktno uporabimo kot tip..
 
 [source,kotlin]
 ----
 include::{sourcedir}/functions.kt[tag=parametrize]
 ----
 
+..lahko si naredimo tudi alias..
+
+[source,kotlin]
+----
+include::{sourcedir}/functions.kt[tag=parametrize_alias]
+----
+
+== Funkcije
+
+..lahko pa določimo celo tip, na katerem se mora funkcija klicati!
+
+[source,kotlin]
+----
+include::{sourcedir}/functions.kt[tag=parametrize_with_receiver]
+----
+
+[NOTE.speaker]
+--
+* SAM v Javi + Kotlin interop!
+* Statične metode s prvim parametrom
+--
+
+
+
+=== Extension funkcije
+
+Ker je "prejemnik" funkcije znan, lahko v definiciji uporabljamo `this`...
+
+[source,kotlin]
+----
+fun String.capitalize(): String {
+    return if (isNotEmpty() && this[0].isLowerCase()) {
+        substring(0, 1).toUpperCase() + substring(1)
+    } else this
+}
+----
+
+...in metodo uporabljamo direktno na objektih primernega tipa.
+
+[source,kotlin]
+----
+fun main(args: Array<String>) {
+    assert("luna".capitalize() == "Luna")
+}
+----
+
+[NOTE.speaker]
+--
+* ogromno featurjev implementiranih tako
+* platform packs
+--
+
+
+=== Builderji
+
+[source,kotlin]
+----
+class HTML {
+    fun body() { ... }
+}
+
+fun html(init: HTML.() -> Unit): HTML {
+    val html = HTML()  // create the receiver object
+    html.init()        // pass the receiver object to the lambda
+    return html
+}
+
+
+html {       // lambda with receiver begins here
+    body()   // calling a method on the receiver object
+}
+----
 
 
 
 
 
+== Funkcije
+
+Shorthand notacija
+
+[source,kotlin]
+----
+include::{sourcedir}/functions.kt[tag=shorthand]
+----
+
+
+
+== Funkcije
+
+Argumente lahko podamo z imenom
+
+[source,kotlin]
+----
+include::{sourcedir}/functions.kt[tag=named_params]
+----
+
+
+
+== Funkcije
+
+Argumentom lahko damo tudi default vrednost
+
+[source,kotlin]
+----
+fun joinToString(
+    separator: CharSequence = ", ", 
+    prefix: CharSequence = "", 
+    postfix: CharSequence = "", 
+    limit: Int = -1, 
+    truncated: CharSequence = "...", 
+    transform: ((T) -> CharSequence)? = null
+): String { .. }
+
+assert(listOf("A", "B", "C").joinToString() == "A, B, C")
+----
+
+[NOTE.speaker]
+--
+Java interop!
+--
+
+
+
+== Funkcije
+
+Olajšave za Lambda notacijo
+
+[source,kotlin]
+----
+include::{sourcedir}/functions.kt[tag=lambda_last_and_it]
+----
 
 
 
