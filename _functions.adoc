@@ -36,10 +36,21 @@ include::{sourcedir}/functions.kt[tag=useful1]
 ----
 
 
+== Funkcije
+
+Lahko vračajo več kot eno vrednost
+
+[source,kotlin]
+----
+include::{sourcedir}/functions.kt[tag=multiple_return]
+----
+
+
+
 
 == Funkcije
 
-Lahko jih referenciramo
+Lahko si shranimo referenco na njih
 
 [source,kotlin]
 ----
@@ -50,14 +61,14 @@ include::{sourcedir}/functions.kt[tag=pass_around]
 
 == Funkcije
 
-Njihov podpis lahko direktno uporabimo kot tip..
+Lahko jih uporabimo kot tip argumenta..
 
 [source,kotlin]
 ----
 include::{sourcedir}/functions.kt[tag=parametrize]
 ----
 
-..lahko si naredimo tudi alias..
+..in si naredimo alias, ko postanejo podpisi predolgi
 
 [source,kotlin]
 ----
@@ -66,7 +77,7 @@ include::{sourcedir}/functions.kt[tag=parametrize_alias]
 
 == Funkcije
 
-..lahko pa določimo celo tip, na katerem se mora funkcija klicati!
+Lahko zahtevamo tip, na katerem se mora funkcija klicati
 
 [source,kotlin]
 ----
@@ -80,13 +91,60 @@ include::{sourcedir}/functions.kt[tag=parametrize_with_receiver]
 --
 
 
-
-=== Extension funkcije
-
-Ker je "prejemnik" funkcije znan, lahko v definiciji uporabljamo `this`...
+=== Primer: HTML Builder
 
 [source,kotlin]
 ----
+fun result(args: Array<String>) =
+    html {
+        head {
+            title {+"XML encoding with Kotlin"}
+        }
+        body {
+            h1 {+"XML encoding with Kotlin"}
+            p  {
+                +"This format can be used for XML markup; "
+                +"it is totaly valid "
+                a(href = "http://kotlinlang.org") {+"Kotlin"}
+                +" code"
+            }
+        }
+    }
+}
+----
+
+===  Primer: HTML Builder
+
+[source,kotlin]
+----
+class HTML : TagWithText("html") {
+    fun head(init: Head.() -> Unit) = initTag(Head(), init)
+
+    fun body(init: Body.() -> Unit) = initTag(Body(), init)
+}
+
+fun html(init: HTML.() -> Unit): HTML {
+    val html = HTML()
+    html.init()
+    return html
+}
+----
+(in tako naprej..)
+
+[NOTE.speaker]
+--
+* Anko za Android
+--
+
+
+== Funkcije
+
+Lahko razširimo obstoječe tipe, ne da bi jim popravili source
+
+[source,kotlin]
+----
+package my.extensions
+
 fun String.capitalize(): String {
     return if (isNotEmpty() && this[0].isLowerCase()) {
         substring(0, 1).toUpperCase() + substring(1)
@@ -94,10 +152,10 @@ fun String.capitalize(): String {
 }
 ----
 
-...in metodo uporabljamo direktno na objektih primernega tipa.
-
 [source,kotlin]
 ----
+import my.extensions.capitalize
+
 fun main(args: Array<String>) {
     assert("luna".capitalize() == "Luna")
 }
@@ -108,29 +166,6 @@ fun main(args: Array<String>) {
 * ogromno featurjev implementiranih tako
 * platform packs
 --
-
-
-=== Builderji
-
-[source,kotlin]
-----
-class HTML {
-    fun body() { ... }
-}
-
-fun html(init: HTML.() -> Unit): HTML {
-    val html = HTML()  // create the receiver object
-    html.init()        // pass the receiver object to the lambda
-    return html
-}
-
-
-html {       // lambda with receiver begins here
-    body()   // calling a method on the receiver object
-}
-----
-
-
 
 
 
@@ -151,7 +186,12 @@ Argumente lahko podamo z imenom
 
 [source,kotlin]
 ----
-include::{sourcedir}/functions.kt[tag=named_params]
+include::{sourcedir}/functions.kt[tag=named_params1]
+----
+
+[source,kotlin]
+----
+include::{sourcedir}/functions.kt[tag=named_params2]
 ----
 
 
@@ -176,7 +216,7 @@ assert(listOf("A", "B", "C").joinToString() == "A, B, C")
 
 [NOTE.speaker]
 --
-Java interop!
+Java interop, lahko naredimo overloade!
 --
 
 
@@ -193,29 +233,131 @@ include::{sourcedir}/functions.kt[tag=lambda_last_and_it]
 
 
 
-
-
-
-
 == Funkcije
 
-Imajo več vrst dostopnosti
+Repno rekurzivne funkcije
 
 [source,kotlin]
 ----
-include::{sourcedir}/functions.kt[tag=visibility]
+tailrec fun findFixPoint(x: Double = 1.0): Double {
+    return if (x == Math.cos(x)) {
+        x 
+    } else {
+        findFixPoint(Math.cos(x))
+    }
+}
 ----
 
-== Moduli
-
-A module is a set of Kotlin files compiled together:
-
-* an IntelliJ IDEA module;
-* a Maven project;
-* a Gradle source set;
-* a set of files compiled with one invocation of the Ant task
 
 
+== Korutine
+
+//https://www.youtube.com/watch?v=_hfBv0a09Jc
+
+[source,kotlin]
+----
+suspend fun fetchFortuneCookie(url: URL): String { .. }
+async {
+    println("Aaaand your fortune is...")
+    val cookie = fetchFortuneCookie("http://api.fortunecookie.com")
+    println(cookie)
+}
+----
+(language feature, neodvisen od OS-a ali VM-ja)
+
+[NOTE.speaker]
+--
+* Point? Preprostost (multithreaded je zajeban) in učinkovitost (ne blockajo)
+* Lahko jih kličeš samo iz drugih suspend funkcij
+* kontekst se shrani, nadaljuje pa lahko drug thread
+--
+
+=== Omogočajo
+
+* Generatorje
+* Async/Await
+* Future & Promise
+* Goroutine/Channel
+
+
+=== !
+
+V standardni knjižnjici Kotlin ponuja zgolj low level primitive, uporabnik pa se lahko odloči med različnimi implementacijami.
+JetBrains ponuja naslednje:
+
+ * kotlinx-coroutines-core
+ * kotlinx-coroutines-jdk8
+ * kotlinx-coroutines-nio
+ * kotlinx-coroutines-android 
+ * kotlinx-coroutines-javafx
+ * kotlinx-coroutines-rx
+ * kotlinx-coroutines-rx2
+
+[NOTE.speaker]
+--
+Vse te implementacije so za JVM, obstaja pa korio, ki podpira tudi JS
+Trenutno ne pridobiš toliko, ker so npr. RX knjižnjice odlične..
+--
+
+
+=== !
+
+Primer: UI thread preservation
+
+[source,kotlin]
+----
+textView.onClick {
+    val r1 = bg { fetchResult1() }
+    val r2 = bg { fetchResult2() }
+    updateUI(r1.await(), r2.await())
+}
+----
+ 
+ 
+=== !
+
+Primer: generator
+
+[source,kotlin]
+----
+val fibonacciSeq = buildSequence {
+    var a = 0
+    var b = 1
+
+    yield(1)
+
+    while (true) {
+        yield(a + b)
+
+        val tmp = a + b
+        a = b
+        b = tmp
+    }
+}
+----
+
+
+
+
+
+
+//== Funkcije
+//
+//Imajo več vrst dostopnosti
+//
+//[source,kotlin]
+//----
+//include::{sourcedir}/functions.kt[tag=visibility]
+//----
+//
+//== Moduli
+//
+//A module is a set of Kotlin files compiled together:
+//
+//* an IntelliJ IDEA module;
+//* a Maven project;
+//* a Gradle source set;
+//* a set of files compiled with one invocation of the Ant task
 
 
 
@@ -226,4 +368,6 @@ A module is a set of Kotlin files compiled together:
 
 
 
-// tailrec, external
+
+
+// external

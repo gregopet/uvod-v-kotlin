@@ -1,0 +1,25 @@
+== Ekosistem
+
+Znani frameworki in podpora za Kotlin
+
+* Android
+* Spring Framework 5.0
+* Gradle
+* .. pravzaprav vseeno, ker je 100% kompatibilen z Javo
+
+
+
+
+== Ekosistem
+
+Nekaj pure Kotlin knjižnjic
+
+* Ktor - web micro framework
+* Spek - unit testing
+* HamKrest - posladkana sintaksa za Hamcrest
+* funKTionale - funkcionalni konstrukti za Kotlin
+* jackson-module-kotlin
+* Exposed - SQL framework
+* kscript - run Kotlin scripts
+* tornadofx - JavaFX framework
+

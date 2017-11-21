@@ -1,4 +1,5 @@
 import java.lang.Math.pow
+import kotlin.coroutines.experimental.*
 
 /*
 //#tag::intro[]
@@ -29,6 +30,20 @@ TODO("Primeri še niso do konca izdelani")
 }
 
 
+fun main(args: Array<String>) {
+//#tag::multiple_return[]
+fun claimReward(opponent: Species): Pair<Int, String> {
+    return if (opponent == Species.Orc)
+        Pair(3, "Smelly boots")
+    else
+        Pair(20, "Unidentified ring")
+}
+
+val (coins, loot) = claimReward(Species.Dwarf)
+//#end::multiple_return[]
+}
+
+
 
 /*
 //#tag::intro_short[]
@@ -45,15 +60,15 @@ object StandardizationGuild {
 
 fun sadasd(args: Array<String>) {
 //#tag::pass_around[]
-    lateinit var xpCalc: (Player, Species) -> Int
+lateinit var xpCalc: (Player, Species) -> Int
 
-    xpCalc = fun(player: Player, opponent: Species): Int {
-        return 100
-    }
+xpCalc = fun(player: Player, opponent: Species): Int {
+    return 100
+}
 
-    xpCalc = { player: Player, opponent: Species -> 100 }
+xpCalc = { player: Player, opponent: Species -> 100 }
 
-    xpCalc = StandardizationGuild::officialExperienceCalc
+xpCalc = StandardizationGuild::officialExperienceCalc
 
 //#end::pass_around[]
 }
@@ -87,20 +102,20 @@ fun reward1(p: Player, o: Species, calc: Player.(Species) -> Int) {
 
 
 //#tag::shorthand[]
-//val level: Int get() = Math.log10(experience).toInt()
-
-fun xpToNextLevel(player: Player) =
-    pow(10.0, player.level + 1.toDouble()) - player.experience
+fun timesTwo(num: Int) = num * 2
 //#end::shorthand[]
 
 
-//#tag::named_params[]
+/*
+fun asdasdad() {
+//#tag::named_params1[]
 fun partyMembers(names: List<String>) =
     names.joinToString(
-        ",", "The party contains ", "members",3, "and many more"
+        ",", "The party contains ", "members", 3, "and many more"
     )
-
-fun partyMembersCleaner(names: List<String>) =
+//#end::named_params1[]
+//#tag::named_params2[]
+fun partyMembers(names: List<String>) =
     names.joinToString(
         separator = ",",
         prefix = "The party contains ",
@@ -108,7 +123,9 @@ fun partyMembersCleaner(names: List<String>) =
         truncated = " and many more",
         postfix = " members"
     )
-//#end::named_params[]
+//#end::named_params2[]
+}
+*/
 
 fun lambdaLast() {
 //#tag::lambda_last_and_it[]
@@ -121,30 +138,29 @@ abc.joinToString { it.toUpperCase() }
 }
 
 
-fun main(args: Array<String>) {
-    args[0].capitalize()
-}
-
-
 //#tag::default_params[]
 fun partyMembersSimple(names: List<String>) =
         "The party contains " + names.joinToString(",")
 //#end::default_params[]
 
 
+fun asdasd() {
+//#tag::infix[]
+fun Player.introduce(other: Player) {
+    println("Hey ${other.name}, I'm ${this.name}")
+}
+//#end::infix[]
+}
+
+
+
+
 // vararg + *
-// infix
 // inline
-// extension
-// tail recursive
-
-tailrec fun findFixPoint(x: Double = 1.0): Double
-    = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
 
 
 
-
-
+// not used!
 //#tag::visibility[]
 fun visibleFromEverywhere() {}
 

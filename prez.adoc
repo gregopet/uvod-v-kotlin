@@ -24,6 +24,10 @@ include::_operators_types.adoc[]
 
 include::_functions.adoc[]
 
+include::_ekosistem.adoc[]
+
+include::_multi_platform.adoc[]
+
 == Hvala!
 
 Prezentacija je na voljo na https://github.com/gregopet/uvod-v-kotlin
