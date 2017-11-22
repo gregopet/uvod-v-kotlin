@@ -1,0 +1,192 @@
+== Razredi
+
+[source,kotlin]
+----
+include::{sourcedir}/_1_kotlin_things.kt[tag=class]
+----
+
+[NOTE.speaker]
+--
+* Samo dvopičje za extend/inherit
+* pa vendar je single inheritance
+* ni tako revolucionarno novo kot funkcije
+--
+
+
+== Razredi
+
+Lastnosti namesto fieldov, določimo jih lahko v konstruktorju
+
+[source,kotlin]
+----
+include::{sourcedir}/classes.kt[tag=shorthand]
+----
+
+
+== Razredi
+
+Lastnosti iz konstruktorjevih parametrov
+
+[source,kotlin]
+----
+include::{sourcedir}/classes.kt[tag=longhand]
+----
+
+[NOTE.speaker]
+--
+Primary konstruktor!
+Vse lastnosti morajo biti definirane
+--
+
+
+
+== Razredi
+
+Podatkovni razredi
+
+
+[source,kotlin]
+----
+include::{sourcedir}/classes.kt[tag=data_classes]
+----
+
+
+
+== Razredi
+
+Sekundarni konstruktorji ter init blok
+
+[source,kotlin]
+----
+include::{sourcedir}/classes.kt[tag=secondary_constructor]
+----
+
+
+== Razredi
+
+Custom lastnosti
+
+[source,kotlin]
+----
+include::{sourcedir}/classes.kt[tag=custom_props]
+----
+
+
+
+== Razredi
+
+Dedovanje
+
+[source,kotlin]
+----
+include::{sourcedir}/classes.kt[tag=inheritance]
+----
+
+
+== Razredi
+
+Delegiranje
+
+[source,kotlin]
+----
+include::{sourcedir}/classes.kt[tag=delegation]
+----
+
+
+=== Delegate class
+
+[source,kotlin]
+----
+class Delegate {
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
+        return "$thisRef, thank you for delegating '${property.name}' to me!"
+    }
+ 
+    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
+        println("$value has been assigned to '${property.name} in $thisRef.'")
+    }
+}
+----
+
+
+== Generics
+
+Declaration-site variance
+
+[source,kotlin]
+----
+include::{sourcedir}/classes.kt[tag=generics1]
+----
+
+
+
+== Generics
+
+Varianca in kovarianca
+
+[source,kotlin]
+----
+include::{sourcedir}/classes.kt[tag=generics1a]
+----
+
+
+== Generics
+
+Use-site variance
+
+[source,kotlin]
+----
+include::{sourcedir}/classes.kt[tag=generics2]
+----
+
+
+== Generics
+
+Generične funkcije
+
+[source,kotlin]
+----
+include::{sourcedir}/classes.kt[tag=generics3]
+----
+
+
+
+== Generics
+
+Omejitve generičnih tipov
+
+[source,kotlin]
+----
+fun <T : Comparable<T>> sort(list: List<T>)  { .. }
+----
+
+[source,kotlin]
+----
+fun <T> cloneWhenGreater(list: List<T>, threshold: T): List<T>
+    where T : Comparable<T>,
+          T : Cloneable {
+  ..
+}
+----
+
+
+
+== Collections
+
+Bogat nabor funkcij za delo z zbirkami
+
+[source,kotlin]
+----
+val x = listOf(1, 2, 3)
+
+x.filter { it % 2 == 0 }.fold(0) { agg, number -> agg * number }
+
+x.groupingBy { it % 2 }.eachCount()
+
+x.sorted().forEachIndexed { index, i -> println("$index: $i")  }
+
+val even = x.first { it % 2 == 0 }
+
+val big = x.firstOrNull { it > 100 }
+----
+

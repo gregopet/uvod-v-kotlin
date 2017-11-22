@@ -26,6 +26,8 @@ include::_expressions_keywords.adoc[]
 
 include::_functions.adoc[]
 
+include::_classes.adoc[]
+
 include::_ekosistem.adoc[]
 
 include::_multi_platform.adoc[]

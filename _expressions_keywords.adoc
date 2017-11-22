@@ -125,9 +125,11 @@ when (x) {
 
 [source,kotlin]
 ----
-when (x) {
-    parseInt(s) -> print("s encodes x")
-    else -> print("s does not encode x")
+fun encodes(s: String, x: Int): Boolean {
+    when (x) {
+        parseInt(s) -> print("s encodes x")
+        else -> print("s does not encode x")
+    }
 }
 ----
 
@@ -157,6 +159,18 @@ fun hasPrefix(x: Any): Boolean {
 }
 ----
 
+
+
+== When
+
+
+[source,kotlin]
+----
+when { 
+    sky is Blue -> println("Yohooo")
+    else        -> println("Booooo")
+}
+----
 
 == Exceptions
 

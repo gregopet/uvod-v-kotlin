@@ -249,6 +249,44 @@ tailrec fun findFixPoint(x: Double = 1.0): Double {
 ----
 
 
+== Funkcije
+
+Inline funkcije
+
+[source,kotlin]
+----
+inline fun <T> lock(lock: Lock, body: () -> T): T {
+    // ...
+}
+
+lock(l) { foo() }
+----
+
+[NOTE.speaker]
+--
+lahko zmanjšajo overhead lambd
+--
+
+
+== Funkcije
+
+Reified inline funkcije: na njih ne vpliva type erasure
+
+[source,kotlin]
+----
+inline fun <reified T> TreeNode.findParentOfType(): T? {
+    var p = parent
+    while (p != null && p !is T) {
+        p = p.parent
+    }
+    return p as T?
+}
+----
+
+
+
+
+
 
 == Korutine
 
