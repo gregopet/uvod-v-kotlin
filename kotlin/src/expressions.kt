@@ -12,5 +12,3 @@ fun x(a:Any?) {
     }
 }
 
-
-fun `your mother is a hamster`() { .. }

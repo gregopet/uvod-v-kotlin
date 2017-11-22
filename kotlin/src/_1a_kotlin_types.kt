@@ -60,8 +60,6 @@ fun nullability() {
 val requirement1: String = null // NAPAKA!
 
 val requirement2: String? = null
-
-val requirement3 = null
 //#end::null1[]
 }
 */

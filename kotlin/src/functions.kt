@@ -30,7 +30,7 @@ TODO("Primeri še niso do konca izdelani")
 }
 
 
-fun main(args: Array<String>) {
+fun main34(args: Array<String>) {
 //#tag::multiple_return[]
 fun claimReward(opponent: Species): Pair<Int, String> {
     return if (opponent == Species.Orc)
@@ -103,6 +103,12 @@ fun reward1(p: Player, o: Species, calc: Player.(Species) -> Int) {
 
 //#tag::shorthand[]
 fun timesTwo(num: Int) = num * 2
+
+fun howMany(num: Int) = when(num) {
+    in 1..3  -> "Not many"
+    in 4..10 -> "Many!"
+    else  -> "Too many!"
+}
 //#end::shorthand[]
 
 
@@ -177,3 +183,12 @@ class SomeClass {
     protected fun visibleFromSubclasses() {}
 }
 //#end::visibility[]
+
+
+fun main(args: Array<String>) {
+    val x = listOf(1, 2, 3)
+    x.filter { it % 2 == 0 }.fold(0) { agg, number -> agg * number }
+    x.groupingBy { it % 2 }.eachCount()
+    x.sorted().forEachIndexed { index, i -> println("$index: $i")  }
+    x.first()
+}

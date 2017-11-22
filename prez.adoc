@@ -8,12 +8,17 @@
 :author: Gregor Petrin, Razum d.o.o.
 :figure-caption: Slika
 :imagesdir: img
-:revealjs_theme: black
-:highlightjs-theme: reveal.js/lib/css/androidstudio.css
+:revealjs_theme: white
+:highlightjs-theme: reveal.js/lib/css/atom-one-light.css
 
-// dark theme
-//:revealjs_theme: white
-//:highlightjs-theme: reveal.js/lib/css/atom-one-light.css
+// other theme
+//:revealjs_theme: black
+//:highlightjs-theme: reveal.js/lib/css/androidstudio.css
+
+
+== !
+
+image::kotlin.png[]
 
 
 include::_about_language.adoc[]
