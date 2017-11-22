@@ -1,0 +1,100 @@
+== Platforme
+
+* JVM
+* Android
+* Javascript
+* Kotlin/Native
+
+
+== JVM
+* Ustvarja 1.6 ali 1.8 bytekodo
+* Kompatibilen z Java 9 moduli
+* JVM je primarna platfoma za Kotlin
+
+
+== Javascript
+* AMD, CommonJS, UMD ali plain format
+* ECMAScript 5.1
+* Dead code elimination tool za manjši standardni lib
+* vgrajene standardne knjižnjice
+* polavtomatski transpile Typescript definicij v Kotlin
+* official podpora za ReactJS
+
+
+== Android
+
+* Popolnoma kompatibilen z JDK 6
+* Enako hiter kot Java
+* 100% interoperabilen
+* podpira annotation processing
+* v APK doda le par sto metod in pod 100KB
+
+
+== Kotlin/Native
+
+* LLVM prevajalnik
+* garbage collector
+* vgrajene standardne knjižnjice ciljne platforme
+* klici C ter Objective/C (na iOS) knjižnjic
+* tool za convertanje C-header filov v Kotlin
+* zaenkrat v preview fazi
+
+
+== Kotlin/Native
+
+* Windows (x86_64 only at the moment)
+* Linux (x86_64, arm32, MIPS, MIPS little endian)
+* MacOS (x86_64)
+* iOS (arm64 only)
+* Android (arm32 and arm64)
+* WebAssembly (wasm32 only)
+
+
+== Multiplatform
+
+* Eksperimentalni feature v 1.2
+* Trenutna podpora le za JVM in JS
+* Trenutno podprti samo Gradle buildi
+
+
+== Multiplatform
+
+Če želimo podpreti N platform, potrebujemo vsaj:
+
+* 1x _common module_: vsebuje od platforme neodvisno Kotlin kodo ter deklarira vmesnike za platform specific kodo
+* Nx _platform module_: implementirajo common module vmesnike s platformsko kodo in lahko poleg Kotlina vsebujejo tudi druge jezike ter se sklicujejo na native knjižnjice
+
+
+[NOTE.speaker]
+--
+* Oba ta dva module se lahko sklicujeta še na ostale Kotlin knjižnjice...
+* MVC: viewe spišeš native, ostalo Kotlin
+* pisanje knjižnjic v Kotlinu je trenutno under development, bojda
+--
+
+== Multiplatform
+
+[source,kotlin]
+----
+// Common
+expect fun formatString(source: String, vararg args: Any): String
+
+expect annotation class Test
+
+// JVM
+actual fun formatString(source: String, vararg args: Any) =
+    String.format(source, args)
+    
+actual typealias Test = org.junit.Test
+----
+
+
+== Multiplatform
+
+Dobijo se že knjižnjice, ki podpirajo tako JVM kot JS
+
+* korio: korutine, IO, OAuth, serializacija
+* klock: date & time classi ter pomočniki
+* korim: konverzije slik
+* korau: WAV, MP3 in OGG vorbis dekoderji
+* korma: matematična knjižnjica s poudarkom na geometriji
